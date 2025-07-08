@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Dark mode functionality
+    const initDarkMode = () => {
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    };
+
+    // Initialize dark mode on page load
+    initDarkMode();
+
     const cursor = document.querySelector('.cursor');
     
     if (!cursor) return;
@@ -64,6 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
     });
     
+    // Dark mode toggle handling
+    const toggleTheme = () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
+    // Add click event to all theme toggle buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.theme-toggle')) {
+            toggleTheme();
+        }
+    });
+
     // Contact form handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
