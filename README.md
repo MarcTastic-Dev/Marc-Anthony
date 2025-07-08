@@ -49,3 +49,5 @@ To run this project locally, follow these steps:
 1. Clone the repository:
    ```sh
    git clone https://github.com/yourusername/yourportfolio.git
+   ```
+### I mean it is just html, css and js. you should have no trouble.
