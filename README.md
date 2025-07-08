@@ -1,6 +1,6 @@
 # Remember that this is a template to build your own websites on, not a standalone.
 
-## Marc Anthony's Portfolio
+# Marc Anthony's Portfolio
 
 Welcome to my personal portfolio website! This portfolio showcases my work as a designer and developer, highlighting my skills in full-stack development.
 
