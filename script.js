@@ -1,13 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Dark mode functionality
-    const initDarkMode = () => {
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', currentTheme);
+// Apply theme immediately to prevent flash of wrong theme
+(function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Update theme-color meta tag for mobile browsers
+    const updateThemeColor = (theme) => {
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+            metaThemeColor.content = theme === 'dark' ? '#09090b' : '#fafafa';
+        }
     };
+    
+    updateThemeColor(savedTheme);
+})();
 
-    // Initialize dark mode on page load
-    initDarkMode();
+document.addEventListener('DOMContentLoaded', () => {
 
     const cursor = document.querySelector('.cursor');
     
@@ -81,6 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        
+        // Update theme-color meta tag
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+            metaThemeColor.content = newTheme === 'dark' ? '#09090b' : '#fafafa';
+        }
     };
 
     // Add click event to all theme toggle buttons
